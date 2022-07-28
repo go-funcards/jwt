@@ -15,10 +15,10 @@ var (
 var _ Generator = (*generator)(nil)
 
 type SignerConfig struct {
-	PrivateKey string        `yaml:"private_key" env:"PRIVATE_KEY" env-required:"true"`
-	Audience   []string      `yaml:"audience" env:"AUDIENCE" env-required:"true"`
-	Algorithm  jwt.Algorithm `yaml:"algorithm" env:"ALGORITHM" env-default:"RS256"`
-	TTL        time.Duration `yaml:"ttl" env:"TTL" env-default:"5m"`
+	PrivateKey string        `mapstructure:"private_key" yaml:"private_key" env:"PRIVATE_KEY" env-required:"true"`
+	Audience   []string      `mapstructure:"audience" yaml:"audience" env:"AUDIENCE" env-required:"true"`
+	Algorithm  jwt.Algorithm `mapstructure:"algorithm" yaml:"algorithm" env:"ALGORITHM" env-default:"RS256"`
+	TTL        time.Duration `mapstructure:"ttl" yaml:"ttl" env:"TTL" env-default:"5m"`
 }
 
 type Generator interface {

@@ -14,17 +14,19 @@ var (
 )
 
 type User struct {
-	UserID string   `json:"user_id,omitempty"`
-	Name   string   `json:"name,omitempty"`
-	Email  string   `json:"email,omitempty"`
-	Roles  []string `json:"roles,omitempty"`
+	UserID   string   `json:"user_id,omitempty"`
+	Name     string   `json:"name,omitempty"`
+	Email    string   `json:"email,omitempty"`
+	Roles    []string `json:"roles,omitempty"`
+	Metadata any      `json:"metadata,omitempty"`
 }
 
 type UserClaims struct {
 	jwt.RegisteredClaims
-	Name  string   `json:"name,omitempty"`
-	Email string   `json:"email,omitempty"`
-	Roles []string `json:"roles,omitempty"`
+	Name     string   `json:"name,omitempty"`
+	Email    string   `json:"email,omitempty"`
+	Roles    []string `json:"roles,omitempty"`
+	Metadata any      `json:"metadata,omitempty"`
 }
 
 func (uc UserClaims) Validate(audience string) error {
@@ -45,9 +47,10 @@ func (uc UserClaims) Validate(audience string) error {
 
 func (uc UserClaims) User() User {
 	return User{
-		UserID: uc.ID,
-		Name:   uc.Name,
-		Email:  uc.Email,
-		Roles:  uc.Roles,
+		UserID:   uc.ID,
+		Name:     uc.Name,
+		Email:    uc.Email,
+		Roles:    uc.Roles,
+		Metadata: uc.Metadata,
 	}
 }

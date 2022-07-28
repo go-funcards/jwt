@@ -18,9 +18,9 @@ var (
 var _ Verifier = (*verifier)(nil)
 
 type VerifierConfig struct {
-	PublicKey string        `yaml:"public_key" env:"PUBLIC_KEY" env-required:"true"`
-	Audience  string        `yaml:"audience" env:"AUDIENCE" env-required:"true"`
-	Algorithm jwt.Algorithm `yaml:"algorithm" env:"ALGORITHM" env-default:"RS256"`
+	PublicKey string        `mapstructure:"public_key" yaml:"public_key" env:"PUBLIC_KEY" env-required:"true"`
+	Audience  string        `mapstructure:"audience" yaml:"audience" env:"AUDIENCE" env-required:"true"`
+	Algorithm jwt.Algorithm `mapstructure:"algorithm" yaml:"algorithm" env:"ALGORITHM" env-default:"RS256"`
 }
 
 type Verifier interface {
